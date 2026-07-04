@@ -1,0 +1,193 @@
+@import "tailwindcss";
+
+@theme {
+  /* AROMA design tokens. Warm earth: coffee, pistachio, honey, saffron */
+  --color-espresso: #26160b;
+  --color-cocoa: #3a2818;
+  --color-bark: #5e4026;
+  --color-mocha: #86664a;
+  --color-latte: #b39877;
+  --color-paper: #f5edda;
+  --color-parchment: #ece0c4;
+  --color-cream: #fbf7eb;
+  --color-line: #ddcdaa;
+  --color-gold: #b07f22;
+  --color-goldlight: #d2a44c;
+  --color-honey: #e4bf6e;
+  --color-pistachio: #5e6f3d;
+  --color-pistachio-deep: #414f28;
+  --color-terracotta: #a8471d;
+  --color-saffron: #cf3f2a;
+
+  --font-display: "Fraunces", "Amiri", Georgia, serif;
+  --font-body: "Karla", "Gill Sans", "Segoe UI", sans-serif;
+  --font-arabic: "Amiri", "Times New Roman", serif;
+
+  --shadow-lift: 0 14px 34px -14px rgb(38 22 11 / 0.28);
+  --shadow-card: 0 2px 10px -4px rgb(38 22 11 / 0.14);
+  --shadow-drawer: -18px 0 50px -20px rgb(38 22 11 / 0.45);
+
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-fade-in: fade-in 0.5s ease both;
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(22px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+}
+
+/* ---------- base ---------- */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-paper text-espresso font-body antialiased;
+  font-optical-sizing: auto;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-cream);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+[lang="ar"] {
+  font-family: var(--font-arabic);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- typography helpers ---------- */
+
+.font-display {
+  font-optical-sizing: auto;
+}
+
+.display-tight {
+  letter-spacing: -0.015em;
+  line-height: 1.02;
+}
+
+.eyebrow {
+  @apply font-body text-[0.7rem] font-bold uppercase;
+  letter-spacing: 0.22em;
+}
+
+/* ---------- texture & ornament ---------- */
+
+/* film grain for large dark surfaces */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+}
+
+/* tiling eight-point star (khatam) lattice */
+.pattern-star {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg fill='none' stroke='%23c89b4b' stroke-width='1'%3E%3Crect x='30' y='30' width='36' height='36'/%3E%3Crect x='30' y='30' width='36' height='36' transform='rotate(45 48 48)'/%3E%3Ccircle cx='48' cy='48' r='4'/%3E%3Ccircle cx='0' cy='0' r='7'/%3E%3Ccircle cx='96' cy='0' r='7'/%3E%3Ccircle cx='0' cy='96' r='7'/%3E%3Ccircle cx='96' cy='96' r='7'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 96px 96px;
+}
+
+/* fine dotted weave for light surfaces */
+.pattern-weave {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Ccircle cx='2' cy='2' r='1.1' fill='%235e4026'/%3E%3Ccircle cx='16' cy='16' r='1.1' fill='%235e4026'/%3E%3C/svg%3E");
+  background-size: 28px 28px;
+}
+
+/* Levantine arch frame */
+.arch {
+  border-radius: 999px 999px 18px 18px / 620px 620px 18px 18px;
+}
+
+.arch-tight {
+  border-radius: 999px 999px 12px 12px / 380px 380px 12px 12px;
+}
+
+/* double keyline used on heritage cards */
+.keyline {
+  box-shadow:
+    inset 0 0 0 1px var(--color-line),
+    inset 0 0 0 5px var(--color-cream),
+    inset 0 0 0 6px var(--color-line);
+}
+
+/* ---------- motion ---------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.hover-lift {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lift);
+}
+
+/* underline that draws in from the start edge */
+.link-ink {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size 0.3s ease;
+}
+
+[dir="rtl"] .link-ink {
+  background-position: 100% 100%;
+}
+
+.link-ink:hover,
+.link-ink:focus-visible {
+  background-size: 100% 1px;
+}
+
+/* ---------- scroll rails ---------- */
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.snap-rail {
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline-start: 1.25rem;
+}
+
+.snap-rail > * {
+  scroll-snap-align: start;
+}
