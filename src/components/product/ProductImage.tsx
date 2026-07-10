@@ -68,14 +68,15 @@ export function ProductImage({
             {ar}
           </span>
         ) : (
-          <span className="font-display text-[clamp(2.2rem,16cqw,4.5rem)] font-semibold italic">
-            {product.title.charAt(0)}
-          </span>
+          <img
+            src="/brand/icon-mark-paper.png"
+            alt=""
+            aria-hidden
+            className="mx-auto h-[clamp(2.2rem,14cqw,4rem)] w-auto opacity-90"
+          />
         )}
         <span className="mx-auto mt-2 block h-px w-10 bg-current opacity-50" aria-hidden />
-        <span className="mt-2 block font-body text-[0.6rem] font-bold uppercase tracking-[0.24em] opacity-80">
-          Aroma
-        </span>
+        <img src="/brand/icon-mark-paper.png" alt="Aroma" className="mx-auto mt-2 h-4 w-auto opacity-80" />
       </div>
     </div>
   )

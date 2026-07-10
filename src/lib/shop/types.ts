@@ -133,6 +133,11 @@ export function origin(p: Product): string | null {
   return metafield(p, 'origin')
 }
 
+/** merchant-confirmed halal, stored as the custom.halal boolean metafield in Shopify */
+export function isHalal(p: Product): boolean {
+  return metafield(p, 'halal') === 'true'
+}
+
 /** true when the product sells by weight (a Shopify option named "Weight") */
 export function soldByWeight(p: Product): boolean {
   return p.options.some((o) => o.name === 'Weight')

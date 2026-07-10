@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { shop } from '../../lib/shop'
 import type { Collection } from '../../lib/shop'
 import { useShopData, useReveal } from '../../lib/hooks'
-import { collectionArabic, collectionCopy } from '../../content/site'
+import { collectionArabic, collectionCopy, collectionImageOverrides } from '../../content/site'
 import { shopifyImage } from '../../lib/format'
 import { IconArrow } from '../Icons'
 import { SectionHeading } from '../Motif'
@@ -31,6 +31,8 @@ const ornamentTones: Record<string, string> = {
 function CategoryTile({ collection, big = false }: { collection: Collection; big?: boolean }) {
   const ar = collectionArabic[collection.handle]
   const copy = collectionCopy[collection.handle]
+  const override = collectionImageOverrides[collection.handle]
+  const imageUrl = override ?? collection.image?.url
 
   return (
     <Link
@@ -39,10 +41,10 @@ function CategoryTile({ collection, big = false }: { collection: Collection; big
         big ? 'col-span-2 row-span-2' : ''
       }`}
     >
-      {collection.image ? (
+      {imageUrl ? (
         <>
           <img
-            src={shopifyImage(collection.image.url, big ? 1200 : 640)}
+            src={override ?? shopifyImage(imageUrl, big ? 1200 : 640)}
             alt=""
             loading="lazy"
             decoding="async"
@@ -76,7 +78,7 @@ function CategoryTile({ collection, big = false }: { collection: Collection; big
         <p className={`font-display font-semibold leading-tight ${big ? 'text-3xl' : 'text-lg sm:text-xl'}`}>
           {collection.title}
         </p>
-        {collection.image && ar && (
+        {imageUrl && ar && (
           <p lang="ar" dir="rtl" className="mt-0.5 text-start text-sm text-paper/80">
             {ar}
           </p>

@@ -6,6 +6,7 @@ import { Seo } from '../components/Seo'
 import { HeroCarousel } from '../components/home/HeroCarousel'
 import { TrustStrip } from '../components/home/TrustStrip'
 import { CategoryGrid } from '../components/home/CategoryGrid'
+import { BehindTheCounter } from '../components/home/BehindTheCounter'
 import { GiftBand } from '../components/home/GiftBand'
 import { StoryStrip } from '../components/home/StoryStrip'
 import { ReviewsBlock } from '../components/home/ReviewsBlock'
@@ -48,6 +49,7 @@ export function HomePage() {
       <TrustStrip />
       <div className="space-y-16 py-14 lg:space-y-24 lg:py-20">
         <CategoryGrid />
+        <BehindTheCounter />
         <ProductRail
           eyebrow="Refilled every week"
           title="Best sellers"

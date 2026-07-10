@@ -12,6 +12,13 @@ dist
 dist-ssr
 *.local
 
+# source material: raw Instagram export and original logo sheet — the
+# derived/processed assets actually used by the site live in public/brand
+# and public/media instead
+/Insta/
+/design/
+/F61D7798-9706-4517-87C9-2ADE719CB499.png
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

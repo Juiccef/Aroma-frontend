@@ -146,6 +146,16 @@ AR = {
 }
 
 # origin only when the product's own name states it
+# merchant-confirmed halal (custom.halal metafield) — every product currently
+# in the Gummies & Candies collection, confirmed by the merchant on 2026-07-04
+HALAL_TITLES = {
+  "Mixed Gummies",
+  "POPPING FRUIT Fruit Jellies Jungle",
+  "POPPING FRUIT Fruit Jellies Bag",
+  "IMAS Jelly Fruit Candies",
+  "IMAS Caremint Hard Candies",
+}
+
 ORIGIN_RULES = [
   (r'palestinian|abu nugta', 'Palestine'),
   (r'egyptian', 'Egypt'),
@@ -264,6 +274,8 @@ for p in raw:
     origin = next((t.split(':',1)[1] for t in tags if t.startswith('origin:')), None)
     if origin:
         metafields.append({"namespace": "custom", "key": "origin", "value": origin})
+    if p['title'] in HALAL_TITLES:
+        metafields.append({"namespace": "custom", "key": "halal", "value": "true"})
     products.append({
         "id": f"gid://shopify/Product/{p['id']}",
         "handle": p['handle'],
@@ -308,7 +320,8 @@ tc = Counter()
 for pr in products:
     for t in pr['tags']: tc[t] += 1
 print('products:', len(products), '| with images:', sum(1 for x in products if x['featuredImage']),
-      '| with arabic:', sum(1 for x in products if any(m['key']=='title_ar' for m in x['metafields'])))
+      '| with arabic:', sum(1 for x in products if any(m['key']=='title_ar' for m in x['metafields'])),
+      '| halal:', sum(1 for x in products if any(m['key']=='halal' for m in x['metafields'])))
 print('under $10:', sum(1 for x in products if float(x['priceRange']['minVariantPrice']['amount']) < 10))
 for t, n in sorted(tc.items()): print(f'  {t}: {n}')
 print('size:', os.path.getsize(OUT)//1024, 'KB')

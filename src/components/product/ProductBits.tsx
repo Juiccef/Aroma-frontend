@@ -1,5 +1,5 @@
 import type { Product } from '../../lib/shop'
-import { arabicTitle, hasPriceRange, onSale, origin, soldByWeight } from '../../lib/shop'
+import { arabicTitle, hasPriceRange, isHalal, onSale, origin, soldByWeight } from '../../lib/shop'
 import { formatMoney } from '../../lib/format'
 
 /** EN | AR product title lockup */
@@ -43,12 +43,13 @@ export function Price({ product, className = '' }: { product: Product; className
   )
 }
 
-/** origin / sale / weight chips */
+/** halal / origin / sale / weight chips */
 export function ProductBadges({ product, className = '' }: { product: Product; className?: string }) {
   const from = origin(product)
   const chips: { label: string; tone: string }[] = []
+  if (isHalal(product)) chips.push({ label: 'Halal', tone: 'bg-pistachio text-cream' })
   if (onSale(product)) chips.push({ label: 'Sale', tone: 'bg-terracotta text-cream' })
-  if (from) chips.push({ label: from, tone: 'bg-pistachio text-cream' })
+  if (from) chips.push({ label: from, tone: 'bg-gold text-espresso' })
   if (!product.availableForSale) chips.push({ label: 'Sold out', tone: 'bg-espresso/70 text-cream' })
   if (chips.length === 0) return null
   return (

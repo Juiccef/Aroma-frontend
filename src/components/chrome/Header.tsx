@@ -1,5 +1,5 @@
 import { Link, NavLink } from 'react-router-dom'
-import { navigation, site } from '../../content/site'
+import { navigation } from '../../content/site'
 import { shop } from '../../lib/shop'
 import type { Product } from '../../lib/shop'
 import { useShopData } from '../../lib/hooks'
@@ -7,6 +7,7 @@ import { useStore } from '../../lib/store-context'
 import { formatProductPrice } from '../../lib/format'
 import { IconBag, IconMenu, IconSearch } from '../Icons'
 import { ProductImage } from '../product/ProductImage'
+import { Wordmark } from './Wordmark'
 
 const allFeaturedHandles = [...new Set(navigation.flatMap((n) => n.featured ?? []))]
 
@@ -32,11 +33,8 @@ export function Header() {
             <IconMenu size={22} />
           </button>
 
-          <Link to="/" className="flex items-baseline gap-2.5 outline-offset-4" aria-label="AROMA home">
-            <span className="font-display text-[1.65rem] font-semibold tracking-[0.16em]">AROMA</span>
-            <span lang="ar" dir="rtl" className="hidden text-lg leading-none text-goldlight sm:block">
-              {site.nameAr}
-            </span>
+          <Link to="/" className="outline-offset-4" aria-label="AROMA home">
+            <Wordmark size="header" />
           </Link>
 
           <nav aria-label="Main" className="ms-6 hidden flex-1 xl:block">

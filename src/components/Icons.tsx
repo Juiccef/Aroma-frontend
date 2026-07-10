@@ -142,6 +142,24 @@ export const IconTikTok = ({ size = 20, ...props }: IconProps) => (
   </svg>
 )
 
+export const IconPlay = ({ size = 20, ...props }: IconProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden {...props}>
+    <path d="M8 5.5v13a1 1 0 0 0 1.5.87l11-6.5a1 1 0 0 0 0-1.74l-11-6.5A1 1 0 0 0 8 5.5Z" />
+  </svg>
+)
+
+export const IconPause = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="M8 5.5v13M16 5.5v13" />
+  </svg>
+)
+
+export const IconMaximize = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="M9 4H5a1 1 0 0 0-1 1v4M15 4h4a1 1 0 0 1 1 1v4M20 15v4a1 1 0 0 1-1 1h-4M4 15v4a1 1 0 0 0 1 1h4" />
+  </svg>
+)
+
 export const IconFacebook = ({ size = 20, ...props }: IconProps) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden {...props}>
     <path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.5 1.6-1.5h1.3V4.9c-.3 0-1.1-.1-2-.1-2.1 0-3.5 1.3-3.5 3.6V11H8.5v3h2.4v7h2.6Z" />

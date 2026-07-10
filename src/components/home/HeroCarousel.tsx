@@ -54,6 +54,7 @@ export function HeroCarousel() {
   const [active, setActive] = useState(0)
   const [paused, setPaused] = useState(false)
   const regionRef = useRef<HTMLElement>(null)
+  const pointerStart = useRef<{ x: number; y: number } | null>(null)
 
   const { data: products } = useShopData<Product[]>(() => shop.getProductsByHandles(allHandles), [])
   const byHandle = useMemo(() => new Map((products ?? []).map((p) => [p.handle, p])), [products])
@@ -64,6 +65,26 @@ export function HeroCarousel() {
     return () => clearInterval(id)
   }, [paused])
 
+  const goNext = () => setActive((i) => (i + 1) % slides.length)
+  const goPrev = () => setActive((i) => (i - 1 + slides.length) % slides.length)
+
+  const handlePointerDown = (e: React.PointerEvent) => {
+    pointerStart.current = { x: e.clientX, y: e.clientY }
+  }
+
+  const handlePointerUp = (e: React.PointerEvent) => {
+    const start = pointerStart.current
+    pointerStart.current = null
+    if (!start) return
+    const dx = e.clientX - start.x
+    const dy = e.clientY - start.y
+    // require a mostly-horizontal drag past a small threshold so vertical
+    // scrolling and ordinary taps/clicks never get mistaken for a swipe
+    if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return
+    if (dx < 0) goNext()
+    else goPrev()
+  }
+
   return (
     <section
       ref={regionRef}
@@ -73,7 +94,13 @@ export function HeroCarousel() {
       onMouseLeave={() => setPaused(false)}
       onFocus={() => setPaused(true)}
       onBlur={() => setPaused(false)}
-      className="grain relative overflow-hidden bg-espresso text-paper"
+      onPointerDown={handlePointerDown}
+      onPointerUp={handlePointerUp}
+      onPointerCancel={() => {
+        pointerStart.current = null
+      }}
+      onDragStart={(e) => e.preventDefault()}
+      className="touch-pan-y grain relative overflow-hidden bg-espresso text-paper"
     >
       <div className="pattern-star absolute inset-0 opacity-[0.06]" aria-hidden />
       {/* warm glow behind the media side */}

@@ -42,6 +42,12 @@ export function GiftingPage() {
 
       <section className="grain relative overflow-hidden bg-pistachio-deep py-20 text-paper lg:py-24">
         <div className="pattern-star absolute inset-0 opacity-[0.08]" aria-hidden />
+        <img
+          src="/brand/seal-premium.png"
+          alt=""
+          aria-hidden
+          className="absolute end-8 top-10 hidden w-32 -rotate-6 opacity-90 drop-shadow-[0_10px_20px_rgba(0,0,0,0.35)] lg:block xl:end-16 xl:w-40"
+        />
         <div className="relative mx-auto max-w-3xl px-5 text-center sm:px-8">
           <p className="eyebrow flex items-center justify-center gap-2 text-honey">
             <StarMotif size={14} /> The gifting guide

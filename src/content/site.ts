@@ -10,7 +10,7 @@
 export const site = {
   name: 'AROMA',
   nameAr: 'أروما',
-  tagline: 'Roastery & Levantine pantry',
+  tagline: 'Roastery & Confectionery',
   city: 'Duluth',
   region: 'Georgia',
   liveDomain: 'https://www.aromaroastco.com',
@@ -26,7 +26,7 @@ export const site = {
 
   social: {
     // NEEDS-REAL-VALUE: set live channel URLs; null entries fall back to /pages/contact
-    instagram: null as string | null,
+    instagram: 'https://www.instagram.com/aromaroastco/' as string | null,
     tiktok: null as string | null,
     facebook: null as string | null,
     whatsapp: null as string | null, // e.g. 'https://wa.me/1XXXXXXXXXX'
@@ -284,13 +284,27 @@ export const collectionArabic: Record<string, string> = {
 export const collectionCopy: Record<string, string> = {
   coffee: 'Ground fresh with cardamom, or ready for karak on the stove.',
   'exotic-drinks': 'Juices, malts and fizzy things from every corner shop you miss.',
-  gummy: 'Chewy, fruity and fun: the pick-n-mix counter, boxed up.',
+  gummy: 'Chewy, fruity and halal: the pick-n-mix counter, boxed up.',
   'nuts-seeds': 'Roasted in small batches and seasoned by hand, every single week.',
   snacks: 'Chips, wafers, chocolate bars and the sweets of every childhood.',
   cjhoci: 'Chocolates worth wrapping, filled and finished by hand.',
   'spices-herbs': 'Zaatar, sumac, saffron and blends measured the old way.',
   'trays-sets-and-gifts': 'Coffee cups, serving trays and sets made for generous tables.',
   turkish: 'Rose-dusted delights and sun-dried fruit, cut fresh off the block.',
+}
+
+/**
+ * Real in-store photography, used until the merchant uploads each of these
+ * as the collection's own image in Shopify Admin (at which point the live
+ * Storefront API image takes over automatically and this override is
+ * unused — see CategoryGrid.tsx). `turkish` intentionally overrides an
+ * existing AI-generated placeholder from the live store with a real photo.
+ */
+export const collectionImageOverrides: Record<string, string> = {
+  'exotic-drinks': '/media/collection-exotic-drinks.jpg',
+  'trays-sets-and-gifts': '/media/collection-trays-gifts.jpg',
+  snacks: '/media/collection-snacks.jpg',
+  turkish: '/media/collection-turkish.jpg',
 }
 
 /* ------------------------------ occasions ------------------------------ */

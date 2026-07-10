@@ -64,26 +64,29 @@ export function GiftBand() {
           </div>
         </div>
 
-        <div className="relative mx-auto w-full max-w-sm">
-          <div className="arch-tight relative overflow-hidden border border-cream/20 bg-pistachio/60 p-8 text-center shadow-lift">
-            <div className="pattern-star absolute inset-0 opacity-[0.12]" aria-hidden />
-            <p lang="ar" dir="rtl" className="relative text-[clamp(3rem,8vw,4.2rem)] leading-tight text-honey">
-              هدايا
-              <br />
-              العيد
-            </p>
-            <p className="relative mt-3 text-sm font-bold uppercase tracking-[0.2em] text-paper/85">
-              Trays · Boxes · Serveware
-            </p>
-            <Link
-              to="/collections/trays-sets-and-gifts"
-              className="link-ink relative mt-5 inline-flex items-center gap-2 text-sm font-bold text-honey"
-            >
-              Shop trays & sets <IconArrow size={15} />
-            </Link>
+        <div className="relative mx-auto w-full max-w-sm text-center">
+          <div className="arch-tight relative overflow-hidden border border-cream/20 shadow-lift">
+            <img
+              src="/media/collection-trays-gifts.jpg"
+              alt="A wooden gift tray of roasted nuts, spices and Turkish delight"
+              className="h-full w-full object-cover"
+            />
           </div>
           <StarMotif size={44} className="absolute -bottom-4 -start-4 text-honey/60" />
           <StarMotif size={28} className="absolute -top-3 end-8 text-honey/40" />
+
+          <p lang="ar" dir="rtl" className="relative mt-6 text-[clamp(2.4rem,6vw,3.2rem)] leading-tight text-honey">
+            هدايا العيد
+          </p>
+          <p className="relative mt-3 text-sm font-bold uppercase tracking-[0.2em] text-paper/85">
+            Trays · Boxes · Serveware
+          </p>
+          <Link
+            to="/collections/trays-sets-and-gifts"
+            className="link-ink relative mt-4 inline-flex items-center gap-2 text-sm font-bold text-honey"
+          >
+            Shop trays & sets <IconArrow size={15} />
+          </Link>
         </div>
       </div>
     </section>

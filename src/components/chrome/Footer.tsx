@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { navigation, site } from '../../content/site'
 import { IconArrow, IconCheck, IconFacebook, IconInstagram, IconTikTok, IconWhatsApp } from '../Icons'
 import { Divider, StarMotif } from '../Motif'
+import { Wordmark } from './Wordmark'
 
 function NewsletterForm() {
   const [email, setEmail] = useState('')
@@ -75,12 +76,7 @@ export function Footer() {
       <div className="relative mx-auto max-w-7xl px-5 py-14 sm:px-8">
         <div className="grid gap-12 lg:grid-cols-[1.2fr_2fr]">
           <div>
-            <p className="flex items-baseline gap-2.5">
-              <span className="font-display text-3xl font-semibold tracking-[0.16em]">AROMA</span>
-              <span lang="ar" dir="rtl" className="text-xl text-goldlight">
-                {site.nameAr}
-              </span>
-            </p>
+            <Wordmark size="footer" />
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-paper/75">
               Nuts and coffee roasted in-house every week in {site.city}, {site.region}, plus the
               sweets, spices and drinks of home, shipped across the US, Canada and beyond.
