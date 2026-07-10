@@ -294,17 +294,22 @@ export const collectionCopy: Record<string, string> = {
 }
 
 /**
- * Real in-store photography, used until the merchant uploads each of these
- * as the collection's own image in Shopify Admin (at which point the live
- * Storefront API image takes over automatically and this override is
- * unused — see CategoryGrid.tsx). `turkish` intentionally overrides an
- * existing AI-generated placeholder from the live store with a real photo.
+ * Real in-store photography (plus, for coffee/spices-herbs, a couple of
+ * free-license Unsplash stock photos where no in-store shot was available),
+ * used until the merchant uploads each of these as the collection's own
+ * image in Shopify Admin (at which point the live Storefront API image
+ * takes over automatically and this override is unused — see
+ * CategoryGrid.tsx). `turkish` intentionally overrides an existing
+ * AI-generated placeholder from the live store with a real photo.
  */
 export const collectionImageOverrides: Record<string, string> = {
   'exotic-drinks': '/media/collection-exotic-drinks.jpg',
   'trays-sets-and-gifts': '/media/collection-trays-gifts.jpg',
   snacks: '/media/collection-snacks.jpg',
   turkish: '/media/collection-turkish.jpg',
+  // stock (Unsplash License, free commercial use): no in-store shot available
+  coffee: '/media/collection-coffee.jpg',
+  'spices-herbs': '/media/collection-spices.jpg',
 }
 
 /* ------------------------------ occasions ------------------------------ */

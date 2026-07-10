@@ -156,6 +156,78 @@ HALAL_TITLES = {
   "IMAS Caremint Hard Candies",
 }
 
+# honest stock photography for generic bulk ingredients that ship with no
+# Shopify photo of their own — never used for a specific branded/packaged
+# product, only for loose spices, herbs, nuts and similar commodity goods
+STOCK_IMAGE_OVERRIDES = {
+  "Sage": "/media/product-sage.jpg",
+  "Rose Petals": "/media/product-rose-petals.jpg",
+  "Lavender": "/media/product-lavender.jpg",
+  "Karkaday (Hibiscus)": "/media/product-hibiscus.jpg",
+  "Cardamom Whole": "/media/product-cardamom.jpg",
+  "Cinnamon Sticks": "/media/product-cinnamon-sticks.jpg",
+  "Clove Whole": "/media/product-cloves.jpg",
+  "Saffron": "/media/product-saffron.jpg",
+  "Tumeric": "/media/product-turmeric.jpg",
+  "Ginger Ground": "/media/product-ginger.jpg",
+  "Paprika": "/media/product-paprika.jpg",
+  "Black Seed": "/media/product-black-seed.jpg",
+  "Cumin Ground": "/media/product-cumin.jpg",
+  "Oregano Ground": "/media/product-oregano.jpg",
+  "Bay Leaves": "/media/product-bay-leaves.jpg",
+  "Coriander Ground": "/media/product-coriander.jpg",
+  "Aleppo Pepper": "/media/product-aleppo-pepper.jpg",
+  "All Spice Ground": "/media/product-allspice.jpg",
+  "Rosemary Leaves Ground": "/media/product-rosemary.jpg",
+  "Lemon (Loomy) Whole Black": "/media/product-loomi-black.jpg",
+  "Lemon (Loomy) Whole Yellow": "/media/product-loomi-yellow.jpg",
+  "Licorice (Erk Sous)": "/media/product-licorice.jpg",
+  "Cinnamon Sticks Flat (Cassia)": "/media/product-cassia.jpg",
+
+  # dish-specific spice blends: visually near-identical ground blends, so a
+  # handful of representative "ground spice blend" photos are shared across
+  # the family rather than sourcing ~24 near-duplicate bespoke shots
+  "Baharat": "/media/product-blend-red.jpg",
+  "Garam Masala": "/media/product-blend-red.jpg",
+  "Kibbeh Neyeh": "/media/product-blend-red.jpg",
+  "Kidra Spice": "/media/product-blend-red.jpg",
+  "Maklouba Spice": "/media/product-blend-red.jpg",
+  "Mansaf Spice": "/media/product-blend-red.jpg",
+  "Ouzi Spice": "/media/product-blend-red.jpg",
+  "Seven Spice": "/media/product-blend-red.jpg",
+  "Shawarma Meat Spice": "/media/product-blend-red.jpg",
+  "Shish Kabab Spice": "/media/product-blend-red.jpg",
+  "Chicken Spice": "/media/product-blend-golden.jpg",
+  "Curry Powder Hot": "/media/product-blend-golden.jpg",
+  "Curry Powder Mild": "/media/product-blend-golden.jpg",
+  "Hawaij Spice": "/media/product-blend-golden.jpg",
+  "Kabsah Ground": "/media/product-blend-golden.jpg",
+  "Kabsah Whole": "/media/product-blend-golden.jpg",
+  "Mandi Spice": "/media/product-blend-golden.jpg",
+  "Shawarma Chicken Spice": "/media/product-blend-golden.jpg",
+  "Tikka Mild": "/media/product-blend-golden.jpg",
+  "BBQ": "/media/product-blend-rustic.jpg",
+  "Falafel Spice": "/media/product-blend-rustic.jpg",
+  "Kubah": "/media/product-blend-rustic.jpg",
+  "Kuftah": "/media/product-blend-rustic.jpg",
+  "Samna Spice": "/media/product-blend-rustic.jpg",
+
+  "Coffee": "/media/product-coffee.jpg",
+  "Coffee Mixed with Cardamom": "/media/product-coffee-cardamom.jpg",
+  "Chai masala": "/media/product-chai-masala.jpg",
+  "Chai Adan with ginger": "/media/product-chai-adan.jpg",
+  "Arabic coffee cup 12pc set": "/media/product-coffee-cups.jpg",
+  "Glass Teacup & Saucer set": "/media/product-glass-teacup.jpg",
+  "Chickpeas": "/media/product-chickpeas.jpg",
+  "Thermos": "/media/product-thermos.jpg",
+  "KARAK TEA original": "/media/product-karak-tea.jpg",
+  "KARAK TEA Cardamom": "/media/product-karak-tea.jpg",
+  "Metal Teacup(big) & Saucer set": "/media/product-metal-teacup.jpg",
+  "Metal Teacup(small) & Saucer set": "/media/product-metal-teacup.jpg",
+  "Mlokhia Ground Dry": "/media/product-mlokhia.jpg",
+  "Zohorat": "/media/product-zohorat.jpg",
+}
+
 ORIGIN_RULES = [
   (r'palestinian|abu nugta', 'Palestine'),
   (r'egyptian', 'Egypt'),
@@ -220,6 +292,11 @@ def img_node(im):
     if not im: return None
     return {"id": f"gid://shopify/ProductImage/{im['id']}", "url": im['src'],
             "altText": None, "width": im.get('width'), "height": im.get('height')}
+
+def stock_img_node(title):
+    path = STOCK_IMAGE_OVERRIDES.get(title)
+    if not path: return None
+    return {"id": f"stock:{title}", "url": path, "altText": title, "width": 1000, "height": 1000}
 
 # ---------- load (live) ----------
 raw = []
@@ -287,8 +364,10 @@ for p in raw:
         "availableForSale": any(v['available'] for v in p['variants']),
         "createdAt": p['created_at'],
         "publishedAt": p['published_at'],
-        "featuredImage": img_node(p['images'][0]) if p['images'] else None,
-        "images": [img_node(im) for im in p['images']],
+        "featuredImage": img_node(p['images'][0]) if p['images'] else stock_img_node(p['title']),
+        "images": [img_node(im) for im in p['images']] if p['images'] else (
+            [stock_img_node(p['title'])] if stock_img_node(p['title']) else []
+        ),
         "options": options,
         "priceRange": {"minVariantPrice": money(min(prices)), "maxVariantPrice": money(max(prices))},
         "variants": variants,
