@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { navigation, site } from '../../content/site'
 import { useStore } from '../../lib/store-context'
 import { useBodyLock, useEscape } from '../../lib/hooks'
-import { IconChevron, IconClose, IconInstagram, IconTikTok, IconWhatsApp } from '../Icons'
+import { IconChevron, IconClose, IconFacebook, IconInstagram } from '../Icons'
 import { StarMotif } from '../Motif'
 
 export function MobileNav() {
@@ -120,8 +120,7 @@ export function MobileNav() {
           <div className="flex items-center gap-3">
             {[
               { label: 'Instagram', href: site.social.instagram, Icon: IconInstagram },
-              { label: 'TikTok', href: site.social.tiktok, Icon: IconTikTok },
-              { label: 'WhatsApp', href: site.social.whatsapp, Icon: IconWhatsApp },
+              { label: 'Facebook', href: site.social.facebook, Icon: IconFacebook },
             ].map(({ label, href, Icon }) =>
               href ? (
                 <a

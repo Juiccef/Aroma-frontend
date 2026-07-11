@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { navigation, site } from '../../content/site'
-import { IconArrow, IconCheck, IconFacebook, IconInstagram, IconTikTok, IconWhatsApp } from '../Icons'
+import { IconArrow, IconCheck, IconFacebook, IconInstagram, IconPhone } from '../Icons'
 import { Divider, StarMotif } from '../Motif'
 import { Wordmark } from './Wordmark'
 
@@ -65,9 +65,7 @@ const policyLinks = [
 export function Footer() {
   const socials = [
     { label: 'Instagram', href: site.social.instagram, Icon: IconInstagram },
-    { label: 'TikTok', href: site.social.tiktok, Icon: IconTikTok },
     { label: 'Facebook', href: site.social.facebook, Icon: IconFacebook },
-    { label: 'WhatsApp', href: site.social.whatsapp, Icon: IconWhatsApp },
   ]
 
   return (
@@ -148,6 +146,12 @@ export function Footer() {
               >
                 Directions & hours <IconArrow size={14} />
               </Link>
+              <a
+                href={site.phoneHref}
+                className="link-ink mt-2 flex items-center gap-2 text-sm font-bold text-paper/85 hover:text-paper"
+              >
+                <IconPhone size={13} /> {site.phone}
+              </a>
               <p className="eyebrow mt-6 mb-2 text-goldlight">We ship to</p>
               <p className="text-sm text-paper/70">
                 US · Canada · {site.shipsTo.length - 2}+ more countries

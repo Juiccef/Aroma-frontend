@@ -1,12 +1,11 @@
 import { Link } from 'react-router-dom'
 import { occasions, site } from '../../content/site'
 import { useReveal } from '../../lib/hooks'
-import { IconArrow, IconWhatsApp } from '../Icons'
+import { IconArrow, IconPhone } from '../Icons'
 import { StarMotif } from '../Motif'
 
 export function GiftBand() {
   const revealRef = useReveal<HTMLElement>()
-  const whatsapp = site.social.whatsapp
 
   return (
     <section ref={revealRef} className="reveal grain relative overflow-hidden bg-pistachio-deep text-paper">
@@ -44,23 +43,12 @@ export function GiftBand() {
             >
               Explore the gifting guide <IconArrow size={16} />
             </Link>
-            {whatsapp ? (
-              <a
-                href={whatsapp}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-cream/30 px-7 py-3.5 text-sm font-bold transition-colors hover:border-honey hover:text-honey"
-              >
-                <IconWhatsApp size={17} /> Plan a custom tray
-              </a>
-            ) : (
-              <Link
-                to="/pages/contact"
-                className="inline-flex items-center gap-2 rounded-full border border-cream/30 px-7 py-3.5 text-sm font-bold transition-colors hover:border-honey hover:text-honey"
-              >
-                <IconWhatsApp size={17} /> Plan a custom tray
-              </Link>
-            )}
+            <a
+              href={site.phoneHref}
+              className="inline-flex items-center gap-2 rounded-full border border-cream/30 px-7 py-3.5 text-sm font-bold transition-colors hover:border-honey hover:text-honey"
+            >
+              <IconPhone size={17} /> Plan a custom tray
+            </a>
           </div>
         </div>
 

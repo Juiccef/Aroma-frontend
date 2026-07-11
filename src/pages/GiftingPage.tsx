@@ -6,7 +6,7 @@ import { useShopData } from '../lib/hooks'
 import { Seo } from '../components/Seo'
 import { ProductRail } from '../components/product/ProductRail'
 import { StarMotif } from '../components/Motif'
-import { IconArrow, IconWhatsApp } from '../components/Icons'
+import { IconArrow, IconPhone } from '../components/Icons'
 
 const steps = [
   {
@@ -31,7 +31,6 @@ export function GiftingPage() {
     () => shop.getCollectionProducts('trays-sets-and-gifts', { first: 8 }),
     [],
   )
-  const whatsapp = site.social.whatsapp
 
   return (
     <>
@@ -100,23 +99,12 @@ export function GiftingPage() {
         </div>
 
         <div className="mt-12 flex flex-wrap gap-3">
-          {whatsapp ? (
-            <a
-              href={whatsapp}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-espresso px-7 py-3.5 text-sm font-bold text-cream transition-colors hover:bg-cocoa"
-            >
-              <IconWhatsApp size={17} /> Plan a tray on WhatsApp
-            </a>
-          ) : (
-            <Link
-              to="/pages/contact"
-              className="inline-flex items-center gap-2 rounded-full bg-espresso px-7 py-3.5 text-sm font-bold text-cream transition-colors hover:bg-cocoa"
-            >
-              <IconWhatsApp size={17} /> Plan a custom tray
-            </Link>
-          )}
+          <a
+            href={site.phoneHref}
+            className="inline-flex items-center gap-2 rounded-full bg-espresso px-7 py-3.5 text-sm font-bold text-cream transition-colors hover:bg-cocoa"
+          >
+            <IconPhone size={17} /> Call to plan a tray
+          </a>
           <Link
             to="/pages/shipping"
             className="inline-flex items-center gap-2 rounded-full border-2 border-espresso px-7 py-3.5 text-sm font-bold transition-colors hover:bg-espresso hover:text-cream"

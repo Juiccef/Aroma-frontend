@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { site } from '../content/site'
 import { Seo } from '../components/Seo'
-import { IconArrow, IconCheck, IconWhatsApp } from '../components/Icons'
+import { IconArrow, IconCheck, IconPhone } from '../components/Icons'
 import { StarMotif } from '../components/Motif'
 
 /**
@@ -12,7 +12,6 @@ import { StarMotif } from '../components/Motif'
  */
 export function ContactPage() {
   const [sent, setSent] = useState(false)
-  const whatsapp = site.social.whatsapp
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -46,8 +45,8 @@ export function ContactPage() {
             </span>
             <h2 className="font-display text-2xl font-semibold">Shukran, message received</h2>
             <p className="text-sm leading-relaxed text-bark">
-              We'll get back to you within a business day. If it's urgent, the phone and WhatsApp
-              details on your order confirmation reach us fastest.
+              We'll get back to you within a business day. If it's urgent, call {site.phone} — that
+              reaches us fastest.
             </p>
             <Link
               to="/collections/best-sellers"
@@ -111,24 +110,20 @@ export function ContactPage() {
         )}
 
         <aside className="space-y-4 self-start">
-          {whatsapp && (
-            <a
-              href={whatsapp}
-              target="_blank"
-              rel="noreferrer"
-              className="hover-lift flex items-center gap-4 rounded-2xl bg-pistachio p-6 text-cream"
-            >
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-cream/40">
-                <IconWhatsApp size={22} />
+          <a
+            href={site.phoneHref}
+            className="hover-lift flex items-center gap-4 rounded-2xl bg-pistachio p-6 text-cream"
+          >
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-cream/40">
+              <IconPhone size={22} />
+            </span>
+            <span>
+              <span className="block font-display text-lg font-semibold">Call {site.phone}</span>
+              <span className="mt-0.5 block text-sm text-cream/85">
+                Fastest for order help and tray planning
               </span>
-              <span>
-                <span className="block font-display text-lg font-semibold">WhatsApp us</span>
-                <span className="mt-0.5 block text-sm text-cream/85">
-                  Fastest for order help and tray planning
-                </span>
-              </span>
-            </a>
-          )}
+            </span>
+          </a>
           <div className="keyline rounded-2xl bg-cream p-6">
             <p className="eyebrow flex items-center gap-2 text-gold">
               <StarMotif size={13} /> Visit the shop

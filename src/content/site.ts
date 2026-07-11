@@ -14,6 +14,8 @@ export const site = {
   city: 'Duluth',
   region: 'Georgia',
   liveDomain: 'https://www.aromaroastco.com',
+  phone: '470-275-4469',
+  phoneHref: 'tel:+14702754469',
 
   /** merchant sets the real threshold; drives the announcement bar + cart progress */
   freeShippingThreshold: 59,
@@ -25,11 +27,8 @@ export const site = {
   ],
 
   social: {
-    // NEEDS-REAL-VALUE: set live channel URLs; null entries fall back to /pages/contact
     instagram: 'https://www.instagram.com/aromaroastco/' as string | null,
-    tiktok: null as string | null,
-    facebook: null as string | null,
-    whatsapp: null as string | null, // e.g. 'https://wa.me/1XXXXXXXXXX'
+    facebook: 'https://www.facebook.com/share/1Dn5mPXA3F/?mibextid=wwXIfr' as string | null,
   },
 
   /** real list from the store's Shopify settings (meta.json ships_to_countries) */

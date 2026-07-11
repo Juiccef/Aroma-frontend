@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { site } from '../../content/site'
 import { useReveal } from '../../lib/hooks'
-import { IconInstagram, IconTikTok, IconWhatsApp } from '../Icons'
+import { IconFacebook, IconInstagram } from '../Icons'
 import { StarMotif } from '../Motif'
 
 const words = [
@@ -25,16 +25,10 @@ const channels = [
     Icon: IconInstagram,
   },
   {
-    label: 'TikTok',
-    handleText: 'New & viral finds, unboxed first',
-    href: site.social.tiktok,
-    Icon: IconTikTok,
-  },
-  {
-    label: 'WhatsApp',
-    handleText: 'Order help & custom trays, one message away',
-    href: site.social.whatsapp,
-    Icon: IconWhatsApp,
+    label: 'Facebook',
+    handleText: 'Shop updates & community',
+    href: site.social.facebook,
+    Icon: IconFacebook,
   },
 ]
 
@@ -71,7 +65,7 @@ export function SocialStrip() {
             تابعونا
           </p>
         </div>
-        <div className="mt-8 grid gap-4 sm:grid-cols-3">
+        <div className="mt-8 grid gap-4 sm:grid-cols-2">
           {channels.map(({ label, handleText, href, Icon }) => {
             const inner = (
               <>

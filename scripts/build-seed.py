@@ -156,6 +156,14 @@ HALAL_TITLES = {
   "IMAS Caremint Hard Candies",
 }
 
+# real in-store/product photography that replaces an existing Shopify
+# image (the merchant's AI-generated placeholder) — takes priority over
+# whatever the live store has, same precedent as the `turkish` collection
+# image override
+REAL_PHOTO_OVERRIDES = {
+  "Watermelon Seeds Salted": "/media/product-watermelon-seeds.jpg",
+}
+
 # honest stock photography for generic bulk ingredients that ship with no
 # Shopify photo of their own — never used for a specific branded/packaged
 # product, only for loose spices, herbs, nuts and similar commodity goods
@@ -298,6 +306,11 @@ def stock_img_node(title):
     if not path: return None
     return {"id": f"stock:{title}", "url": path, "altText": title, "width": 1000, "height": 1000}
 
+def real_photo_node(title):
+    path = REAL_PHOTO_OVERRIDES.get(title)
+    if not path: return None
+    return {"id": f"real:{title}", "url": path, "altText": title, "width": 1000, "height": 1000}
+
 # ---------- load (live) ----------
 raw = []
 seen = set()
@@ -364,9 +377,11 @@ for p in raw:
         "availableForSale": any(v['available'] for v in p['variants']),
         "createdAt": p['created_at'],
         "publishedAt": p['published_at'],
-        "featuredImage": img_node(p['images'][0]) if p['images'] else stock_img_node(p['title']),
-        "images": [img_node(im) for im in p['images']] if p['images'] else (
-            [stock_img_node(p['title'])] if stock_img_node(p['title']) else []
+        "featuredImage": real_photo_node(p['title']) or (img_node(p['images'][0]) if p['images'] else stock_img_node(p['title'])),
+        "images": [real_photo_node(p['title'])] if real_photo_node(p['title']) else (
+            [img_node(im) for im in p['images']] if p['images'] else (
+                [stock_img_node(p['title'])] if stock_img_node(p['title']) else []
+            )
         ),
         "options": options,
         "priceRange": {"minVariantPrice": money(min(prices)), "maxVariantPrice": money(max(prices))},

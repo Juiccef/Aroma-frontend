@@ -11,7 +11,7 @@ import { ProductImage } from '../components/product/ProductImage'
 import { Price, ProductBadges, WeightNote } from '../components/product/ProductBits'
 import { PurchasePanel, usePurchase } from '../components/product/PurchasePanel'
 import { ProductRail } from '../components/product/ProductRail'
-import { IconCheck, IconChevron, IconFlame, IconTruck, IconWhatsApp } from '../components/Icons'
+import { IconCheck, IconChevron, IconFlame, IconPhone, IconTruck } from '../components/Icons'
 import { HalalMark } from '../components/Icons'
 import { NotFoundPage } from './NotFoundPage'
 
@@ -61,7 +61,6 @@ function ProductView({ product }: { product: Product }) {
   const ar = arabicTitle(product)
   const from = origin(product)
   const primaryCollection = product.collections[0]
-  const whatsapp = site.social.whatsapp
   const images = product.images.length > 0 ? product.images : null
 
   return (
@@ -225,25 +224,14 @@ function ProductView({ product }: { product: Product }) {
                 </ul>
               </Accordion>
               <Accordion title="Ask a question">
-                <p>Fastest answers come through WhatsApp or the contact page, usually same day.</p>
+                <p>Fastest answers come by phone or the contact page, usually same day.</p>
                 <div className="mt-3 flex flex-wrap gap-2">
-                  {whatsapp ? (
-                    <a
-                      href={whatsapp}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center gap-2 rounded-full bg-pistachio px-5 py-2.5 text-sm font-bold text-cream transition-colors hover:bg-pistachio-deep"
-                    >
-                      <IconWhatsApp size={16} /> WhatsApp us
-                    </a>
-                  ) : (
-                    <Link
-                      to="/pages/contact"
-                      className="inline-flex items-center gap-2 rounded-full bg-pistachio px-5 py-2.5 text-sm font-bold text-cream transition-colors hover:bg-pistachio-deep"
-                    >
-                      <IconWhatsApp size={16} /> Message us
-                    </Link>
-                  )}
+                  <a
+                    href={site.phoneHref}
+                    className="inline-flex items-center gap-2 rounded-full bg-pistachio px-5 py-2.5 text-sm font-bold text-cream transition-colors hover:bg-pistachio-deep"
+                  >
+                    <IconPhone size={16} /> Call us
+                  </a>
                   <Link
                     to="/pages/faq"
                     className="inline-flex items-center rounded-full border border-line px-5 py-2.5 text-sm font-bold transition-colors hover:border-bark"
