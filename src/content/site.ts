@@ -13,9 +13,26 @@ export const site = {
   tagline: 'Roastery & Confectionery',
   city: 'Duluth',
   region: 'Georgia',
+  streetAddress: '3308 Peachtree Industrial Blvd #140',
+  postalCode: '30096',
   liveDomain: 'https://www.aromaroastco.com',
   phone: '470-275-4469',
   phoneHref: 'tel:+14702754469',
+  /** from the store's Google Business listing; update as new reviews come in */
+  googleRating: { value: 5.0, count: 40 },
+  mapsHref:
+    'https://www.google.com/maps/search/?api=1&query=3308+Peachtree+Industrial+Blvd+%23140+Duluth+GA+30096',
+
+  /** shop hours, Monday first; opens/closes are 24h HH:mm for the Store schema below */
+  hours: [
+    { day: 'Monday', label: '11 AM – 9 PM', opens: '11:00', closes: '21:00' },
+    { day: 'Tuesday', label: '11 AM – 9 PM', opens: '11:00', closes: '21:00' },
+    { day: 'Wednesday', label: '11 AM – 9 PM', opens: '11:00', closes: '21:00' },
+    { day: 'Thursday', label: '11 AM – 9 PM', opens: '11:00', closes: '21:00' },
+    { day: 'Friday', label: '11 AM – 11 PM', opens: '11:00', closes: '23:00' },
+    { day: 'Saturday', label: '11 AM – 11 PM', opens: '11:00', closes: '23:00' },
+    { day: 'Sunday', label: '11 AM – 9 PM', opens: '11:00', closes: '21:00' },
+  ],
 
   /** merchant sets the real threshold; drives the announcement bar + cart progress */
   freeShippingThreshold: 59,
@@ -337,27 +354,27 @@ export const occasions = [
 /* -------------------------------- reviews ------------------------------- */
 
 /**
- * SAMPLE CONTENT: replace with a live review feed (Judge.me, Loox, Okendo
- * or Google Reviews) before launch. Shaped like a generic review object so
- * a live feed drops in.
+ * Real 5-star Google reviews for the Duluth store, transcribed verbatim
+ * (trimmed to the most quotable sentences where the original review ran
+ * long) — replace with a live Google Reviews / Judge.me feed at launch.
  */
-export const sampleReviews = [
+export const reviews = [
   {
     quote:
-      'The mixed nuts taste like the ones my dad brings back from Amman. Still warm-tasting, if that makes sense. Nothing like grocery store tins.',
-    author: 'Rania S.',
+      "Without a doubt the best coffee house and roastery I've visited in the U.S. The aroma when you walk in is incredible and instantly reminded me of back home.",
+    author: 'Ameer Salame',
     rating: 5,
   },
   {
     quote:
-      'Ordered the coffee with cardamom and the smell when I opened the box took me straight back home. Shipping to Canada was faster than expected.',
-    author: 'Omar H.',
+      'Thee Aroma definitely took me back to the holy land of Jerusalem. Spectacular coffee smell when you first step in, variety of fresh nuts available, over 50 kinds of halal gummy bears and the biggest surprise (my most favorite) fresh Turkish delights.',
+    author: 'Layth Abu Alia',
     rating: 5,
   },
   {
     quote:
-      'The watermelon seeds are dangerously fresh. My whole family demolished a pound in one movie night. Ordering two next time.',
-    author: 'Layla M.',
+      'Stopped by here for their soft opening over the weekend and honestly loved it. They have a huge selection of roasted nuts and everything I tried tasted super fresh. The chocolates were really good too — ended up buying way more than I planned.',
+    author: 'Adam Warrayat',
     rating: 5,
   },
 ]

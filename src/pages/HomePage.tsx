@@ -39,9 +39,23 @@ export function HomePage() {
           url: site.liveDomain,
           address: {
             '@type': 'PostalAddress',
+            streetAddress: site.streetAddress,
             addressLocality: site.city,
             addressRegion: site.region,
+            postalCode: site.postalCode,
             addressCountry: 'US',
+          },
+          telephone: site.phone,
+          openingHoursSpecification: site.hours.map((h) => ({
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: `https://schema.org/${h.day}`,
+            opens: h.opens,
+            closes: h.closes,
+          })),
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: site.googleRating.value,
+            reviewCount: site.googleRating.count,
           },
         }}
       />

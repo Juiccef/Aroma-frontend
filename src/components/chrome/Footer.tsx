@@ -136,9 +136,9 @@ export function Footer() {
             <div>
               <p className="eyebrow mb-4 text-goldlight">Visit</p>
               <p className="text-sm leading-relaxed text-paper/80">
-                {site.city}, {site.region}
+                {site.streetAddress}
                 <br />
-                United States
+                {site.city}, {site.region} {site.postalCode}
               </p>
               <Link
                 to="/pages/contact"

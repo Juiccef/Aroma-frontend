@@ -1,10 +1,10 @@
-import { sampleReviews } from '../../content/site'
+import { reviews, site } from '../../content/site'
 import { useReveal } from '../../lib/hooks'
 import { IconStar } from '../Icons'
 import { SectionHeading } from '../Motif'
 
 /**
- * Review content comes from content/site.ts (sample data); swap in a live
+ * Real Google reviews, transcribed in content/site.ts; swap in a live
  * Judge.me / Okendo / Google Reviews feed with the same shape at launch.
  */
 export function ReviewsBlock() {
@@ -17,8 +17,16 @@ export function ReviewsBlock() {
         titleAr="كلام طيب"
         align="center"
       />
+      <p className="mt-3 flex items-center justify-center gap-1.5 text-center text-sm font-bold text-mocha">
+        <span className="flex gap-0.5 text-gold">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <IconStar key={i} size={14} />
+          ))}
+        </span>
+        {site.googleRating.value.toFixed(1)} on Google · {site.googleRating.count} reviews
+      </p>
       <div className="mt-9 grid gap-4 sm:grid-cols-3 sm:gap-5">
-        {sampleReviews.map((review) => (
+        {reviews.map((review) => (
           <figure
             key={review.author}
             className="keyline flex flex-col rounded-2xl bg-cream p-6 sm:p-7"

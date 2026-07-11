@@ -12,6 +12,7 @@ import { StarMotif } from '../components/Motif'
  */
 export function ContactPage() {
   const [sent, setSent] = useState(false)
+  const today = new Date().toLocaleDateString('en-US', { weekday: 'long' })
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -128,10 +129,30 @@ export function ContactPage() {
             <p className="eyebrow flex items-center gap-2 text-gold">
               <StarMotif size={13} /> Visit the shop
             </p>
-            <p className="mt-3 font-display text-xl font-semibold">
-              {site.city}, {site.region}
-            </p>
-            <p className="mt-2 text-sm leading-relaxed text-bark">
+            <a
+              href={site.mapsHref}
+              target="_blank"
+              rel="noreferrer"
+              className="link-ink mt-3 block font-display text-lg font-semibold"
+            >
+              {site.streetAddress}
+              <span className="block text-base font-normal text-bark">
+                {site.city}, {site.region} {site.postalCode}
+              </span>
+            </a>
+            <ul className="mt-4 space-y-1.5 border-t border-line pt-4 text-sm">
+              {site.hours.map((h) => (
+                <li key={h.day} className="flex items-center justify-between gap-4">
+                  <span className={today === h.day ? 'font-bold text-espresso' : 'text-bark'}>
+                    {h.day}
+                  </span>
+                  <span className={today === h.day ? 'font-bold text-espresso' : 'text-bark'}>
+                    {h.label}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-4 text-sm leading-relaxed text-bark">
               Local pickup is available at checkout. We'll email you the moment your order is
               packed and ready.
             </p>
