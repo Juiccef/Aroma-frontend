@@ -113,8 +113,8 @@ export function BehindTheCounter() {
             طازة بإيدينا
           </p>
           <p className="mt-5 max-w-lg text-[0.98rem] leading-relaxed text-paper/80">
-            No stock photos here. Every bag is packed by hand in Duluth: the same nuts, chocolate
-            and coffee you will find on the shelf when you visit.
+            Real footage from our counter. Every bag is packed by hand in Duluth: the same nuts,
+            chocolate and coffee you will find on the shelf when you visit.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <Link

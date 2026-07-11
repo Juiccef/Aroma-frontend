@@ -312,6 +312,19 @@ export const collectionImageOverrides: Record<string, string> = {
   'spices-herbs': '/media/collection-spices.jpg',
 }
 
+/**
+ * Hero-only image swap, keyed by product handle. The products themselves
+ * keep their real (merchant-uploaded, plain white studio background)
+ * photo everywhere else — product cards, collection grids, the product
+ * page — this only swaps what the homepage hero shows, since a flat
+ * white product shot reads poorly against the hero's dark backdrop.
+ */
+export const heroImageOverrides: Record<string, string> = {
+  'pistachios-salted': '/media/hero-pistachios.jpg',
+  'mixed-chocolates': '/media/hero-chocolates.jpg',
+  'mixed-turkish-delights': '/media/hero-turkish-delight.jpg',
+}
+
 /* ------------------------------ occasions ------------------------------ */
 
 export const occasions = [

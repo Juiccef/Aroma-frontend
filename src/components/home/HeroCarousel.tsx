@@ -2,10 +2,37 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { shop } from '../../lib/shop'
 import type { Product } from '../../lib/shop'
+import { heroImageOverrides } from '../../content/site'
 import { useShopData } from '../../lib/hooks'
 import { IconArrow } from '../Icons'
 import { StarMotif } from '../Motif'
 import { ProductImage } from '../product/ProductImage'
+
+function HeroImage({
+  product,
+  width,
+  sizes,
+  eager,
+}: {
+  product: Product
+  width: number
+  sizes: string
+  eager?: boolean
+}) {
+  const override = heroImageOverrides[product.handle]
+  if (override) {
+    return (
+      <img
+        src={override}
+        alt={product.title}
+        loading={eager ? 'eager' : 'lazy'}
+        decoding="async"
+        className="h-full w-full object-cover"
+      />
+    )
+  }
+  return <ProductImage product={product} width={width} sizes={sizes} eager={eager} />
+}
 
 interface Slide {
   eyebrow: string
@@ -162,7 +189,9 @@ export function HeroCarousel() {
 
               <div className="relative mx-auto w-full max-w-md lg:max-w-none">
                 <div className="@container arch relative z-10 ms-auto aspect-[4/4.8] w-[78%] overflow-hidden border border-cream/15 shadow-lift">
-                  {main && <ProductImage product={main} width={900} sizes="(min-width:1024px) 40vw, 80vw" eager={i === 0} />}
+                  {main && (
+                    <HeroImage product={main} width={900} sizes="(min-width:1024px) 40vw, 80vw" eager={i === 0} />
+                  )}
                 </div>
                 {side && (
                   <Link
@@ -171,7 +200,7 @@ export function HeroCarousel() {
                     className="@container hover-lift absolute -bottom-6 start-0 z-20 block w-[44%] -rotate-3 overflow-hidden rounded-2xl border border-cream/20 shadow-lift"
                   >
                     <div className="aspect-square">
-                      <ProductImage product={side} width={480} sizes="20vw" />
+                      <HeroImage product={side} width={480} sizes="20vw" />
                     </div>
                   </Link>
                 )}
