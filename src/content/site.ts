@@ -339,6 +339,8 @@ export const heroImageOverrides: Record<string, string> = {
   'pistachios-salted': '/media/hero-pistachios.jpg',
   'mixed-chocolates': '/media/hero-chocolates.jpg',
   'mixed-turkish-delights': '/media/hero-turkish-delight.jpg',
+  'coffee-mixed-with-cardamom': '/media/product-coffee-cardamom.jpg',
+  'karak-tea-original': '/media/product-karak-tea.jpg',
 }
 
 /* ------------------------------ occasions ------------------------------ */
