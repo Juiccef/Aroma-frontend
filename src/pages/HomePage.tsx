@@ -14,8 +14,8 @@ import { SocialStrip } from '../components/home/SocialStrip'
 import { ProductRail } from '../components/product/ProductRail'
 
 export function HomePage() {
-  const { data: bestSellers } = useShopData<Product[]>(
-    () => shop.getProductsByHandles(merchandising.bestSellers),
+  const { data: bestSellers } = useShopData<ProductConnection>(
+    () => shop.getCollectionProducts('best-sellers', { first: 12 }),
     [],
   )
   const { data: trending } = useShopData<ProductConnection>(
@@ -69,7 +69,7 @@ export function HomePage() {
           title="Best sellers"
           titleAr="الأكثر مبيعاً"
           to="/collections/best-sellers"
-          products={bestSellers ?? []}
+          products={bestSellers?.nodes ?? []}
         />
         <ProductRail
           eyebrow="Fresh on the shelf"

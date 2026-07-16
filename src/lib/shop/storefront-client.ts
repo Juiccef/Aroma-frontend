@@ -329,14 +329,27 @@ export class StorefrontShopClient implements ShopClient {
     return data.collection ? toCollection(data.collection) : null
   }
 
+  /** Shopify's real sales-ranked order, not the curated fallback list */
+  async getBestSellers(limit = 12) {
+    const data = await this.fetch<{ products: { nodes: GqlProduct[] } }>(
+      `${PRODUCT_FRAGMENT}
+      query($limit: Int!) {
+        products(first: $limit, sortKey: BEST_SELLING) { nodes { ...ProductFields } }
+      }`,
+      { limit },
+    )
+    return data.products.nodes.map(toProduct)
+  }
+
   /**
-   * best-sellers / new-trending / under-10 aren't real Shopify collections
-   * on this store; resolved the same way MockShopClient does, from
-   * merchandising config in content/site.ts, using real product data.
+   * new-trending / under-10 aren't real Shopify collections on this store;
+   * resolved the same way MockShopClient does, from merchandising config in
+   * content/site.ts, using real product data. best-sellers uses Shopify's
+   * actual sales ranking directly instead, so it's live rather than curated.
    */
   private async virtualCollectionProducts(handle: string): Promise<Product[] | null> {
     if (handle === 'best-sellers') {
-      return this.getProductsByHandles(merchandising.bestSellers)
+      return this.getBestSellers(24)
     }
     if (handle === 'new-trending') {
       const curated = await this.getProductsByHandles(merchandising.trending)

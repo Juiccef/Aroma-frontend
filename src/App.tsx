@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import { StoreProvider } from './lib/store-context'
-import { AnnouncementBar } from './components/chrome/AnnouncementBar'
 import { Header } from './components/chrome/Header'
 import { Footer } from './components/chrome/Footer'
 import { MobileNav } from './components/chrome/MobileNav'
@@ -37,7 +36,6 @@ export default function App() {
       >
         Skip to content
       </a>
-      <AnnouncementBar />
       <Header />
       <main id="main">
         <Routes>

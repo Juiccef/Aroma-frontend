@@ -34,14 +34,8 @@ export const site = {
     { day: 'Sunday', label: '11 AM – 9 PM', opens: '11:00', closes: '21:00' },
   ],
 
-  /** merchant sets the real threshold; drives the announcement bar + cart progress */
+  /** merchant sets the real threshold; drives cart progress messaging */
   freeShippingThreshold: 59,
-
-  announcements: [
-    'Free US shipping on orders over $59',
-    'Roasted fresh every week in Duluth, Georgia',
-    'We ship to the US, Canada & 25+ countries',
-  ],
 
   social: {
     instagram: 'https://www.instagram.com/aromaroastco/' as string | null,
