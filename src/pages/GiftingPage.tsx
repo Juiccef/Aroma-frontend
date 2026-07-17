@@ -1,10 +1,6 @@
 import { Link } from 'react-router-dom'
 import { occasions, site } from '../content/site'
-import { shop } from '../lib/shop'
-import type { ProductConnection } from '../lib/shop'
-import { useShopData } from '../lib/hooks'
 import { Seo } from '../components/Seo'
-import { ProductRail } from '../components/product/ProductRail'
 import { StarMotif } from '../components/Motif'
 import { IconArrow, IconPhone } from '../components/Icons'
 
@@ -27,11 +23,6 @@ const steps = [
 ]
 
 export function GiftingPage() {
-  const { data: serveware } = useShopData<ProductConnection>(
-    () => shop.getCollectionProducts('trays-sets-and-gifts', { first: 8 }),
-    [],
-  )
-
   return (
     <>
       <Seo
@@ -113,18 +104,6 @@ export function GiftingPage() {
           </Link>
         </div>
       </section>
-
-      {serveware && serveware.nodes.length > 0 && (
-        <div className="border-t border-line bg-parchment/50 py-14">
-          <ProductRail
-            eyebrow="Worth keeping after the sweets are gone"
-            title="Serveware & sets"
-            titleAr="طقم الضيافة"
-            to="/collections/trays-sets-and-gifts"
-            products={serveware.nodes}
-          />
-        </div>
-      )}
     </>
   )
 }

@@ -174,24 +174,7 @@ export const navigation: NavItem[] = [
     ],
     featured: ['zatar-palestinian', 'saffron'],
   },
-  {
-    label: 'Drinks',
-    labelAr: 'مشروبات',
-    to: c('exotic-drinks'),
-    columns: [
-      {
-        title: 'Cold from the fridge',
-        links: [
-          { label: 'Juices', to: c('exotic-drinks', 'juices') },
-          { label: 'Sparkling & Malt', to: c('exotic-drinks', 'sparkling') },
-          { label: 'Energy Drinks', to: c('exotic-drinks', 'energy-drinks') },
-          { label: 'Iced Coffee & Milk', to: c('exotic-drinks', 'coffee-milk-drinks') },
-          { label: 'Shop all Drinks', to: c('exotic-drinks') },
-        ],
-      },
-    ],
-    featured: ['freez-lychee', 'original-iced-coffee-caramel'],
-  },
+  { label: 'Drinks', labelAr: 'مشروبات', to: c('exotic-drinks') },
   {
     label: 'Gifts & Serveware',
     labelAr: 'هدايا وضيافة',

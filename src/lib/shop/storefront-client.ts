@@ -343,20 +343,15 @@ export class StorefrontShopClient implements ShopClient {
 
   /**
    * new-trending / under-10 aren't real Shopify collections on this store;
-   * resolved the same way MockShopClient does, from merchandising config in
-   * content/site.ts, using real product data. best-sellers uses Shopify's
-   * actual sales ranking directly instead, so it's live rather than curated.
+   * both resolved from live product data instead of a curated handle list,
+   * the same way best-sellers uses Shopify's actual sales ranking.
    */
   private async virtualCollectionProducts(handle: string): Promise<Product[] | null> {
     if (handle === 'best-sellers') {
       return this.getBestSellers(24)
     }
     if (handle === 'new-trending') {
-      const curated = await this.getProductsByHandles(merchandising.trending)
-      const curatedIds = new Set(curated.map((p) => p.id))
-      const pool = await this.getNewArrivals(40)
-      const newest = pool.filter((p) => !curatedIds.has(p.id))
-      return [...curated, ...newest.slice(0, 24 - curated.length)]
+      return this.getNewArrivals(24)
     }
     if (handle === 'under-10') {
       return this.getProductsUnderPrice(merchandising.underPrice, 250)
