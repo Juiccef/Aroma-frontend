@@ -69,12 +69,6 @@ export function GiftBand() {
           <p className="relative mt-3 text-sm font-bold uppercase tracking-[0.2em] text-paper/85">
             Trays · Boxes · Serveware
           </p>
-          <Link
-            to="/collections/trays-sets-and-gifts"
-            className="link-ink relative mt-4 inline-flex items-center gap-2 text-sm font-bold text-honey"
-          >
-            Shop trays & sets <IconArrow size={15} />
-          </Link>
         </div>
       </div>
     </section>

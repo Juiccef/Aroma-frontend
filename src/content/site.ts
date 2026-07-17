@@ -175,22 +175,7 @@ export const navigation: NavItem[] = [
     featured: ['zatar-palestinian', 'saffron'],
   },
   { label: 'Drinks', labelAr: 'مشروبات', to: c('exotic-drinks') },
-  {
-    label: 'Gifts & Serveware',
-    labelAr: 'هدايا وضيافة',
-    to: c('trays-sets-and-gifts'),
-    columns: [
-      {
-        title: 'Host & gift',
-        links: [
-          { label: 'Serveware & Sets', to: c('trays-sets-and-gifts', 'serveware') },
-          { label: 'Gifting Guide', to: '/pages/gifting' },
-          { label: 'Shop all Gifts', to: c('trays-sets-and-gifts') },
-        ],
-      },
-    ],
-    featured: ['arabic-coffee-cup-12pc-set', 'trays-2pc-set'],
-  },
+  { label: 'Gifting Guide', labelAr: 'دليل الهدايا', to: '/pages/gifting' },
   { label: 'Best Sellers', labelAr: 'الأكثر مبيعاً', to: c('best-sellers'), accent: 'gold' },
   { label: 'New & Trending', labelAr: 'جديد ورائج', to: c('new-trending'), accent: 'terracotta' },
 ]
@@ -269,7 +254,6 @@ export const collectionArabic: Record<string, string> = {
   snacks: 'سناكات',
   cjhoci: 'شوكولاتة فاخرة',
   'spices-herbs': 'بهارات وأعشاب',
-  'trays-sets-and-gifts': 'صواني وهدايا',
   turkish: 'راحة وفواكه مجففة',
 }
 
@@ -282,7 +266,6 @@ export const collectionCopy: Record<string, string> = {
   snacks: 'Chips, wafers, chocolate bars and the sweets of every childhood.',
   cjhoci: 'Chocolates worth wrapping, filled and finished by hand.',
   'spices-herbs': 'Zaatar, sumac, saffron and blends measured the old way.',
-  'trays-sets-and-gifts': 'Coffee cups, serving trays and sets made for generous tables.',
   turkish: 'Rose-dusted delights and sun-dried fruit, cut fresh off the block.',
 }
 
@@ -297,7 +280,6 @@ export const collectionCopy: Record<string, string> = {
  */
 export const collectionImageOverrides: Record<string, string> = {
   'exotic-drinks': '/media/collection-exotic-drinks.jpg',
-  'trays-sets-and-gifts': '/media/collection-trays-gifts.jpg',
   snacks: '/media/collection-snacks.jpg',
   turkish: '/media/collection-turkish.jpg',
   // stock (Unsplash License, free commercial use): no in-store shot available

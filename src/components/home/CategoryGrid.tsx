@@ -17,7 +17,6 @@ const tileOrder = [
   'snacks',
   'cjhoci',
   'exotic-drinks',
-  'trays-sets-and-gifts',
 ]
 
 const ornamentTones: Record<string, string> = {
@@ -25,7 +24,6 @@ const ornamentTones: Record<string, string> = {
   'spices-herbs': 'bg-[#84421f] text-paper',
   snacks: 'bg-cocoa text-honey',
   'exotic-drinks': 'bg-pistachio-deep text-paper',
-  'trays-sets-and-gifts': 'bg-[#6d5416] text-paper',
 }
 
 function CategoryTile({ collection, big = false }: { collection: Collection; big?: boolean }) {
