@@ -47,7 +47,7 @@ export const site = {
     'United States', 'Canada', 'United Kingdom', 'Australia', 'New Zealand', 'Ireland',
     'Germany', 'France', 'Spain', 'Italy', 'Portugal', 'Netherlands', 'Belgium', 'Austria',
     'Switzerland', 'Denmark', 'Sweden', 'Norway', 'Finland', 'Poland', 'Czechia',
-    'United Arab Emirates', 'Israel', 'Japan', 'South Korea', 'Hong Kong', 'Singapore', 'Malaysia',
+    'United Arab Emirates', 'Japan', 'South Korea', 'Hong Kong', 'Singapore', 'Malaysia',
   ],
 }
 
