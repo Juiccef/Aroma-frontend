@@ -76,6 +76,11 @@ export interface Collection {
   image: ShopImage | null
 }
 
+export interface CartAttribute {
+  key: string
+  value: string
+}
+
 export interface CartLine {
   id: string
   quantity: number
@@ -86,6 +91,7 @@ export interface CartLine {
   cost: {
     totalAmount: Money
   }
+  attributes: CartAttribute[]
 }
 
 export interface Cart {

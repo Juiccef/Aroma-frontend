@@ -168,6 +168,7 @@ interface GqlCartLine {
   id: string
   quantity: number
   cost: { totalAmount: Money }
+  attributes: { key: string; value: string }[]
   merchandise: {
     id: string
     title: string
@@ -199,6 +200,7 @@ function toCart(c: GqlCart): Cart {
         id: l.id,
         quantity: l.quantity,
         cost: { totalAmount: l.cost.totalAmount },
+        attributes: l.attributes,
         merchandise: {
           variant: {
             id: l.merchandise.id,
@@ -227,6 +229,7 @@ const CART_FRAGMENT = `
         id
         quantity
         cost { totalAmount { amount currencyCode } }
+        attributes { key value }
         merchandise {
           ... on ProductVariant {
             id
@@ -488,7 +491,10 @@ export class StorefrontShopClient implements ShopClient {
     return toCart(data.cartCreate.cart)
   }
 
-  async cartLinesAdd(cartId: string, lines: { merchandiseId: string; quantity: number }[]) {
+  async cartLinesAdd(
+    cartId: string,
+    lines: { merchandiseId: string; quantity: number; attributes?: { key: string; value: string }[] }[],
+  ) {
     const data = await this.fetch<{ cartLinesAdd: { cart: GqlCart } }>(
       `${PRODUCT_FRAGMENT}\n${CART_FRAGMENT}
       mutation($cartId: ID!, $lines: [CartLineInput!]!) {

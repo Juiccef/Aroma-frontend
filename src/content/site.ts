@@ -217,6 +217,50 @@ export const merchandising = {
   underPrice: 10,
 }
 
+export interface ProductMixOption {
+  label: string
+  choices: string[]
+  specialRequests: boolean
+}
+
+/**
+ * "Select Your Mix" + special-requests fields the old theme exposed via the
+ * Easify Product Options app. That app only runs inside Shopify's own theme
+ * rendering, so it's invisible to the Storefront API — this is the same
+ * choice list, transcribed from the live (still-published) old theme, keyed
+ * by product handle. Selection + notes are sent as cart line attributes on
+ * add-to-cart, so they land on the real Shopify order the same way.
+ */
+export const productMixOptions: Record<string, ProductMixOption> = {
+  'mixed-chocolates': {
+    label: 'Select Your Mix',
+    choices: [
+      'All Chocolates Mix',
+      'Dark Chocolate Mix',
+      'Milk Chocolate Mix',
+      'Pistachio Mix',
+      'Hazelnut Mix',
+      'Almond Mix',
+      'Date Mix',
+    ],
+    specialRequests: true,
+  },
+  'mixed-gummies': {
+    label: 'Select Your Mix',
+    choices: [
+      'All Gummies Mix',
+      'Sour Mix',
+      'Fruity Mix',
+      'Licorice Mix',
+      'CocaCola Mix',
+      'Rainbow Mix',
+      'Red Mix',
+      'Blue Mix',
+    ],
+    specialRequests: true,
+  },
+}
+
 export interface VirtualCollection {
   handle: string
   title: string

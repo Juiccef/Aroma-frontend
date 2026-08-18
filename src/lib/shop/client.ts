@@ -20,6 +20,7 @@ import seedJson from '../../data/seed.json'
 import { merchandising, virtualCollections } from '../../content/site'
 import type {
   Cart,
+  CartAttribute,
   CartLine,
   Collection,
   Product,
@@ -58,7 +59,10 @@ export interface ShopClient {
   getProductsUnderPrice(price: number, limit?: number): Promise<Product[]>
   searchProducts(term: string, limit?: number): Promise<Product[]>
   cartCreate(): Promise<Cart>
-  cartLinesAdd(cartId: string, lines: { merchandiseId: string; quantity: number }[]): Promise<Cart>
+  cartLinesAdd(
+    cartId: string,
+    lines: { merchandiseId: string; quantity: number; attributes?: CartAttribute[] }[],
+  ): Promise<Cart>
   cartLinesUpdate(cartId: string, lines: { id: string; quantity: number }[]): Promise<Cart>
   cartLinesRemove(cartId: string, lineIds: string[]): Promise<Cart>
 }
@@ -270,13 +274,18 @@ export class MockShopClient implements ShopClient {
     return delay(cart)
   }
 
-  cartLinesAdd(cartId: string, lines: { merchandiseId: string; quantity: number }[]) {
+  cartLinesAdd(cartId: string, lines: { merchandiseId: string; quantity: number; attributes?: CartAttribute[] }[]) {
     const cart = carts.get(cartId)
     if (!cart) throw new Error(`Unknown cart ${cartId}`)
-    for (const { merchandiseId, quantity } of lines) {
+    for (const { merchandiseId, quantity, attributes = [] } of lines) {
       const hit = variantIndex.get(merchandiseId)
       if (!hit) throw new Error(`Unknown variant ${merchandiseId}`)
-      const existing = cart.lines.find((l) => l.merchandise.variant.id === merchandiseId)
+      // Shopify only merges lines when the merchandise AND attributes both match
+      const sameAttrs = (a: CartAttribute[]) =>
+        a.length === attributes.length && a.every((x) => attributes.some((y) => y.key === x.key && y.value === x.value))
+      const existing = cart.lines.find(
+        (l) => l.merchandise.variant.id === merchandiseId && sameAttrs(l.attributes),
+      )
       if (existing) {
         existing.quantity += quantity
       } else {
@@ -286,6 +295,7 @@ export class MockShopClient implements ShopClient {
           quantity,
           merchandise: { variant, product: hit.product },
           cost: { totalAmount: money(0) },
+          attributes,
         }
         cart.lines.push(line)
       }

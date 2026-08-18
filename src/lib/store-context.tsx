@@ -1,7 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
 import { shop } from './shop'
-import type { Cart, Product } from './shop'
+import type { Cart, CartAttribute, Product } from './shop'
 
 /**
  * Cart state lives in memory and every mutation flows through the
@@ -12,7 +12,7 @@ import type { Cart, Product } from './shop'
 interface StoreContextValue {
   cart: Cart | null
   cartBusy: boolean
-  addToCart: (merchandiseId: string, quantity?: number) => Promise<void>
+  addToCart: (merchandiseId: string, quantity?: number, attributes?: CartAttribute[]) => Promise<void>
   updateLine: (lineId: string, quantity: number) => Promise<void>
   removeLine: (lineId: string) => Promise<void>
   cartOpen: boolean
@@ -51,10 +51,10 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     }
   }, [])
 
-  const addToCart = useCallback(async (merchandiseId: string, quantity = 1) => {
+  const addToCart = useCallback(async (merchandiseId: string, quantity = 1, attributes?: CartAttribute[]) => {
     if (!cartIdRef.current) return
     setCartBusy(true)
-    const next = await shop.cartLinesAdd(cartIdRef.current, [{ merchandiseId, quantity }])
+    const next = await shop.cartLinesAdd(cartIdRef.current, [{ merchandiseId, quantity, attributes }])
     setCart(next)
     setCartBusy(false)
     setQuickView(null)

@@ -148,6 +148,17 @@ export function CartDrawer() {
                           {v.title.replace('Quarter Pound', '¼ lb').replace('Half Pound', '½ lb').replace(/\bPound\b/, '1 lb')}
                         </p>
                       )}
+                      {line.attributes.filter((a) => a.value).length > 0 && (
+                        <ul className="mt-0.5 space-y-0.5">
+                          {line.attributes
+                            .filter((a) => a.value)
+                            .map((a) => (
+                              <li key={a.key} className="text-xs text-mocha">
+                                {a.key}: {a.value}
+                              </li>
+                            ))}
+                        </ul>
+                      )}
                       <div className="mt-2 flex items-center justify-between">
                         <div className="flex items-center rounded-full border border-line bg-cream">
                           <button
