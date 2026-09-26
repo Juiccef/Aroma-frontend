@@ -19,7 +19,7 @@ export const site = {
   phone: '470-275-4469',
   phoneHref: 'tel:+14702754469',
   /** from the store's Google Business listing; update as new reviews come in */
-  googleRating: { value: 5.0, count: 40 },
+  googleRating: { value: 5.0, count: 147 },
   mapsHref:
     'https://www.google.com/maps/search/?api=1&query=3308+Peachtree+Industrial+Blvd+%23140+Duluth+GA+30096',
 
@@ -380,6 +380,114 @@ export const reviews = [
     quote:
       'Stopped by here for their soft opening over the weekend and honestly loved it. They have a huge selection of roasted nuts and everything I tried tasted super fresh. The chocolates were really good too — ended up buying way more than I planned.',
     author: 'Adam Warrayat',
+    rating: 5,
+  },
+  {
+    quote:
+      'Honestly, I\'m so happy I found this place! Everything was so beautiful and nostalgic, they have so many chocolates and treats that I literally grew up eating, plus so many Arabic products that are hard to find in one place. The whole place has such a cozy, welcoming vibe, and you can tell they put so much love into it.',
+    author: 'D A',
+    rating: 5,
+  },
+  {
+    quote:
+      'Visited today and the two gentlemen inside were friendly and generous with samples including the amazing Turkish coffee. They spent time explaining things and weren\'t rushed. Sampled plenty of nuts and a pistachio caramel chocolate.',
+    author: 'Stephanie Rollins',
+    rating: 5,
+  },
+  {
+    quote:
+      'Went to the soft opening and had a wonderful experience. You are immediately welcomed and offered samples. The staff was knowledgeable and ready to serve. The prices are insanely good, especially with some of the items being rare finds!',
+    author: 'Ashley Young',
+    rating: 5,
+  },
+  {
+    quote:
+      'This place has fantastic coffee, delicious desserts, and freshly roasted nuts. Everything tastes fresh and high quality, and the staff is friendly and welcoming.',
+    author: 'Tomas Regassa',
+    rating: 5,
+  },
+  {
+    quote:
+      'It\'s amazing, it\'s the land of the sweet, also if you looking for a good quality of Arabic coffee it\'s here. I highly recommend it.',
+    author: 'Ammar Azez',
+    rating: 5,
+  },
+  {
+    quote:
+      'Awesome spot with variety of quality chocolates, nuts and candy… and all Halal! The service was amazing and the guys here let us sample anything we wanted before buying.',
+    author: 'Miki Feyisa',
+    rating: 5,
+  },
+  {
+    quote:
+      'Everything in here is so good. They have so much variety from Turkish delights to nuts to chocolates, anything you can think of. And everything tastes good and fresh.',
+    author: 'Waleed Abdallah',
+    rating: 5,
+  },
+  {
+    quote:
+      'A must visit new place! My son went there last night and brought home some of their products. Everything was fresh, delicious, and packaged really well.',
+    author: 'Emad Sabbah',
+    rating: 5,
+  },
+  {
+    quote:
+      'Really gorgeous interior! The guy working there was really nice and helpful! We got to try their Turkish coffee and it tasted really good! Would definitely recommend swinging by for unique candies and chocolates for party favors, events, and a nice treat!',
+    author: 'Julie Cao',
+    rating: 5,
+  },
+  {
+    quote:
+      'This place has a little bit of everything. Great coffee, tons of sweet treats, pastries, and snacks, plus really friendly service. You can tell they put a lot of thought into what they offer.',
+    author: 'Natalie Yousif',
+    rating: 5,
+  },
+  {
+    quote:
+      'This place brought something that was needed in Georgia. This place is very unique and brings a lot of nostalgia. Everything tasted amazing, and prices were very fair.',
+    author: 'Khalid Mustafa',
+    rating: 5,
+  },
+  {
+    quote:
+      'Awesome new business with unique Turkish / Jordanian candies and other sweets. Amazing nuts collection and great coffee beans. So glad we have a spot like this in Gwinnett.',
+    author: 'Nick Preston',
+    rating: 5,
+  },
+  {
+    quote:
+      'Absolutely amazing roasted nuts and coffee! Everything tastes fresh, high quality, and full of flavor. The staff are super friendly and the place smells incredible the moment you walk in.',
+    author: 'Sulaiman Alhomsi',
+    rating: 5,
+  },
+  {
+    quote:
+      '10000/10. They have a great selection of halal gummies, chocolates, and sweets. The gummies are so good and taste just like the ones in the Middle East.',
+    author: 'Almaas',
+    rating: 5,
+  },
+  {
+    quote:
+      'Very unique and beautiful store. Definitely stop by for a cool new experience and try something. We grabbed some halal candy and chocolate, pretty good.',
+    author: 'Mindy Su',
+    rating: 5,
+  },
+  {
+    quote:
+      'Amazing experience!! Very welcoming owners and staff gave us free coffee as soon as we walked in!!',
+    author: 'Hazim Mallak',
+    rating: 5,
+  },
+  {
+    quote:
+      'Aroma has a beautiful assortment of chocolates and nuts, and delicious coffee!!',
+    author: 'Serene Hawasli',
+    rating: 5,
+  },
+  {
+    quote:
+      'Walking in the store brings me to a ease of mind, new and familiar feelings. I felt welcomed and I will surely come back here. Highly recommended.',
+    author: 'Adrian Villalon',
     rating: 5,
   },
 ]
